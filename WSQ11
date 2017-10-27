@@ -1,0 +1,38 @@
+#include <iostream> 
+#include <algorithm> 
+#include <string>
+#include <fstream> 
+#include <cctype> 
+    using std :: cout ;
+    using std :: cin ; 
+    using std :: endl ; 
+    using std :: fstream ;
+    using std :: string ;
+    using std :: transform ; 
+    using std :: tolower ; 
+
+int busca_palabra (string name) {
+    fstream file ;
+    file.open (name.c_str ()) ;
+    string line ; 
+    int count = 0 ;
+        while (getline (file, line)) {
+            transform (line.begin (), line.end (), line.begin(), (int (*) (int)) tolower) ;
+            int busca_palabra = line.find ("banana") ; 
+                while (busca_palabra != -1 ) {
+                    count ++ ; 
+                    busca_palabra = line.find ("banana",  busca_palabra+1 ) ;
+                }
+        }
+        return count ;
+} 
+
+int main () {
+    string file ; 
+    cout << "Por favor, dime el nombre del archivo en el que quieres busque esas bananas: " << endl ; 
+    cin >> file ; 
+    int bananastotales = busca_palabra(file) ;
+    cout << "El número de bananas en ese documento es " << bananastotales << " ." << endl ;
+    return 0 ; 
+}
+    

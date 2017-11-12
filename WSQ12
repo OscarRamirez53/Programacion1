@@ -1,0 +1,41 @@
+#include <iostream>
+#include <cmath> 
+#include <iomanip>
+    using std :: cout ; 
+    using std :: cin ;
+    using std :: endl ;
+    using std :: setprecision ;
+    using std :: abs ; 
+
+int factorial (int n) {
+    int valor ; 
+    valor = 1 ; 
+    while (n>1){
+        valor = valor *n ;
+        n = n - 1 ; 
+    }
+    return valor ;
+}
+
+double valorE (double precision) {
+    double e = 0;
+    int n = 0 ; 
+    double valorprevio = 9.99999999 ; 
+    while (abs (e - valorprevio) > precision){
+        valorprevio = e ;
+        e = (1.0000000000000000 / factorial (n)+e) ;
+        n++ ;
+    }
+    return e ;
+}    
+
+int main (){
+    double precision ; 
+    cout << "¿Quieres conocer el valor de e? Indica el número de decimales que deseas: " ;
+    cin >> precision ;
+    cout << setprecision (40) << valorE (precision) << endl ; 
+    return 0 ;
+}
+
+
+    

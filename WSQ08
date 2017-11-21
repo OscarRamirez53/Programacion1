@@ -1,0 +1,59 @@
+#include <iostream> 
+    using std :: cout ;
+    using std :: cin ; 
+    using std :: endl ;
+    
+int myrev (int valor) {
+    int rev = 0 ;
+    do {
+        rev = ((rev + (valor %10)) * 10 ) ;
+        valor = valor / 10 ; 
+    } while (valor > 10) ;
+    rev = rev / 10 ; 
+    return rev ; 
+}
+
+int main () { 
+    int inferior ; 
+    int superior ; 
+    int n = 0; 
+    int copia ;
+    int reversa ; 
+    int palindrome = 0 ; 
+    int lychrel = 0 ;
+    int nlychrel = 0;
+    cout << "Por favor, introduce el límite inferior: " << endl ;
+    cin >> inferior ; 
+    cout << "Por favor introduce el límite superior: " << endl ; 
+    cin >> superior ; 
+    copia = inferior ; 
+    int count = inferior ; 
+    do {
+        reversa = myrev (copia) ;
+        if (copia == reversa ) {
+            palindrome ++ ;
+        } else 
+            do {
+                copia = reversa + copia ; 
+                reversa = myrev (copia) ; 
+                if (reversa == copia) { 
+                    nlychrel ++ ; 
+                    break ; 
+                }
+                n++ ; 
+            }while (n < 30) ;
+            if (copia!= reversa) {
+                lychrel ++ ;
+            }
+        count = count + 1 ; 
+        copia = count ;
+    } while (copia <= superior); 
+    cout << "Desde " << inferior << " hasta " << superior << " hay: " << endl ; 
+    cout << "Palindromes: " << palindrome << endl ; 
+    cout << "No lychrel: " << nlychrel << endl ; 
+    cout << "Candidatos a lychrel: " << lychrel << endl ; 
+    
+return 0 ; 
+}
+    
+    
